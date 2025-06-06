@@ -361,8 +361,8 @@ def download_cover_art_manga(url, replace=False):
     log.info(f"Download directory is set to {base_path}")
 
     if config.create_manga_info:
-        path = create_directory("", path=get_path(manga))
-        create_manga_info(path, manga, replace)
+        path2 = create_directory("", path=get_path(manga))
+        create_manga_info(path2, manga, replace)
 
         if config.manga_info_only:
             return manga
