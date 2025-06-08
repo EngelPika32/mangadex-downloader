@@ -423,6 +423,7 @@ class MangaInfo:
             "artist": comma_separated_text(self.manga.artists, use_bracket=False),
             "description": self.manga.description,
             "genre": self.manga.genres,
+            "tags": [i.name for i in self.manga.tags],
             "status": MangaStatus[self.manga.status].value,
             "_status values": [
                 "0 = Unknown",
