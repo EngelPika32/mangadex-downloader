@@ -31,6 +31,10 @@ def _get_or_unknown(x):
 def _split_text(text):
     return comma_separated_text(text, use_bracket=False)
 
+def _handle_authors_or_artists(ele_list, label, threshold):
+    if len(ele_list) >= threshold:
+        return f"Various {label}"
+    return _split_text(ele_list)
 
 class Placeholder:
     def __init__(self, obj, name=None, allowed_attributes=None, cli_option=None):
@@ -101,8 +105,8 @@ class Placeholder:
                 "id": None,
                 "alternative_titles": None,
                 "description": sanitize_filename,
-                "authors": _split_text,
-                "artists": _split_text,
+                "authors": lambda x: _handle_authors_or_artists(x, "Authors", 7),
+                "artists": lambda x: _handle_authors_or_artists(x, "Artists", 7),
                 "cover": None,
                 "genres": _split_text,
                 "status": None,
